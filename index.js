@@ -1,18 +1,14 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-require('dotenv').config()
+require("dotenv").config();
+const express = require("express");
+const app = express();
 
-app.use(cors())
-app.use(express.static('public'))
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/index.html')
+require("./startup/logging")(app);
+require("./startup/routes")(app);
+require("./startup/db")();
+
+// Basic Configuration
+const port = process.env.PORT || 3000;
+
+app.listen(port, function () {
+  console.log(`Listening on port ${port}`);
 });
-
-
-
-
-
-const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
-})
