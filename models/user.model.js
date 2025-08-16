@@ -3,7 +3,7 @@ const { exerciseSchema } = require("./exercise.model");
 
 const userSchema = new mongoose.Schema({
   username: String,
-  logs: [exerciseSchema],
+  log: [exerciseSchema],
 });
 
 const User = new mongoose.model("User", userSchema);
